@@ -77,7 +77,7 @@ func (m *MultiGoroutine) Run() {
 			defer func() {
 				m.wg.Done()
 				if e := recover(); e != nil {
-					log.Fatalf("%s exit unexpected\n", name)
+					log.Fatalf("%s exit unexpected, error(%v)\n", name, e)
 				}
 				log.Printf("%s exit\n", name)
 			}()
