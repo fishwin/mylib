@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/fishwin/mylib/stack"
+	"github.com/fishwin/mylib/data_struct/stack"
 )
 
 func main() {

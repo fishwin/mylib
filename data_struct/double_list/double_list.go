@@ -138,7 +138,6 @@ func (list *DoubleList) Display() {
 	}
 }
 
-// Reverse 倒序打印双链表信息
 func (list *DoubleList) Reverse() {
 	if list == nil || list.Size == 0 {
 		return

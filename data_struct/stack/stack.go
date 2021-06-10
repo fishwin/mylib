@@ -1,6 +1,6 @@
 package stack
 
-import "github.com/fishwin/mylib/single_list"
+import "github.com/fishwin/mylib/data_struct/single_list"
 
 type Stack struct {
 	list *single_list.SingleList
@@ -11,9 +11,7 @@ func NewStack() *Stack {
 }
 
 func (s *Stack) Push(data interface{}) bool {
-	node := &single_list.SingleNode{
-		Data: data,
-	}
+	node := &single_list.SingleNode{Data: data}
 	return s.list.Insert(0, node)
 }
 

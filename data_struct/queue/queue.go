@@ -1,6 +1,6 @@
 package queue
 
-import "github.com/fishwin/mylib/single_list"
+import "github.com/fishwin/mylib/data_struct/single_list"
 
 type Queue struct {
 	list *single_list.SingleList
