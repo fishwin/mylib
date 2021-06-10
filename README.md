@@ -2,7 +2,7 @@
 golang utils
 
 ## features
-+ go
++ magic
     + multi goroutines
 + data struct
     + single list
@@ -10,7 +10,7 @@ golang utils
     + stack
     + queue
 ## examples
-### go
+### magic
 #### multi goroutines
 ```go
 package main

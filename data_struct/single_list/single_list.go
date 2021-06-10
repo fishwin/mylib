@@ -12,17 +12,17 @@ type SingleNode struct {
 
 type SingleList struct {
 	mutex *sync.RWMutex
-	head  *SingleNode
-	tail  *SingleNode
-	size  uint
+	Head  *SingleNode
+	Tail  *SingleNode
+	Size  uint
 }
 
 func NewSingleList() *SingleList {
 	sl := &SingleList{
 		mutex: &sync.RWMutex{},
-		head:  nil,
-		tail:  nil,
-		size:  0,
+		Head:  nil,
+		Tail:  nil,
+		Size:  0,
 	}
 
 	return sl
@@ -34,17 +34,17 @@ func (list *SingleList) Append(node *SingleNode) bool {
 	}
 	list.mutex.Lock()
 	defer list.mutex.Unlock()
-	if list.size == 0 {
-		list.head = node
-		list.tail = node
-		list.size = 1
+	if list.Size == 0 {
+		list.Head = node
+		list.Tail = node
+		list.Size = 1
 		return true
 	}
 
-	tail := list.tail
+	tail := list.Tail
 	tail.Next = node
-	list.tail = node
-	list.size += 1
+	list.Tail = node
+	list.Size += 1
 	return true
 }
 
@@ -53,7 +53,7 @@ func (list *SingleList) Insert(index uint, node *SingleNode) bool {
 		return false
 	}
 
-	if index > list.size {
+	if index > list.Size {
 		return false
 	}
 
@@ -61,25 +61,25 @@ func (list *SingleList) Insert(index uint, node *SingleNode) bool {
 	defer list.mutex.Unlock()
 
 	if index == 0 {
-		node.Next = list.head
-		list.head = node
-		list.size += 1
+		node.Next = list.Head
+		list.Head = node
+		list.Size += 1
 		return true
 	}
 	var i uint
-	ptr := list.head
+	ptr := list.Head
 	for i = 1; i < index; i++ {
 		ptr = ptr.Next
 	}
 	next := ptr.Next
 	ptr.Next = node
 	node.Next = next
-	list.size += 1
+	list.Size += 1
 	return true
 }
 
 func (list *SingleList) Delete(index uint) bool {
-	if list == nil || list.size == 0 || index > list.size-1 {
+	if list == nil || list.Size == 0 || index > list.Size-1 {
 		return false
 	}
 
@@ -87,16 +87,16 @@ func (list *SingleList) Delete(index uint) bool {
 	defer list.mutex.Unlock()
 
 	if index == 0 {
-		head := list.head.Next
-		list.head = head
-		if list.size == 1 {
-			list.tail = nil
+		head := list.Head.Next
+		list.Head = head
+		if list.Size == 1 {
+			list.Tail = nil
 		}
-		list.size -= 1
+		list.Size -= 1
 		return true
 	}
 
-	ptr := list.head
+	ptr := list.Head
 	var i uint
 	for i = 1; i < index; i++ {
 		ptr = ptr.Next
@@ -104,15 +104,15 @@ func (list *SingleList) Delete(index uint) bool {
 	next := ptr.Next
 
 	ptr.Next = next.Next
-	if index == list.size-1 {
-		list.tail = ptr
+	if index == list.Size-1 {
+		list.Tail = ptr
 	}
-	list.size -= 1
+	list.Size -= 1
 	return true
 }
 
 func (list *SingleList) Get(index uint) *SingleNode {
-	if list == nil || list.size == 0 || index > list.size-1 {
+	if list == nil || list.Size == 0 || index > list.Size-1 {
 		return nil
 	}
 
@@ -120,9 +120,9 @@ func (list *SingleList) Get(index uint) *SingleNode {
 	defer list.mutex.RUnlock()
 
 	if index == 0 {
-		return list.head
+		return list.Head
 	}
-	node := list.head
+	node := list.Head
 	var i uint
 	for i = 0; i < index; i++ {
 		node = node.Next
@@ -131,18 +131,18 @@ func (list *SingleList) Get(index uint) *SingleNode {
 }
 
 func (list *SingleList) Length() uint {
-	return list.size
+	return list.Size
 }
 
 func (list *SingleList) Display() {
-	if list == nil || list.size == 0 {
+	if list == nil || list.Size == 0 {
 		return
 	}
 	list.mutex.RLock()
 	defer list.mutex.RUnlock()
-	ptr := list.head
+	ptr := list.Head
 	var i uint
-	for i = 0; i < list.size; i++ {
+	for i = 0; i < list.Size; i++ {
 		fmt.Printf("data is %v\n", ptr.Data)
 		ptr = ptr.Next
 	}
