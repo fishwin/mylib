@@ -93,6 +93,40 @@ func main() {
 	sl.Delete(5)
 	sl.Display()
 }
+```
+### double list
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/fishwin/mylib/data_struct/double_list"
+)
+
+func main() {
+	dl := double_list.NewDoubleList()
+	dl.Append(&double_list.DoubleNode{Data: 1})
+	dl.Append(&double_list.DoubleNode{Data: 2})
+	dl.Append(&double_list.DoubleNode{Data: 3})
+	dl.Append(&double_list.DoubleNode{Data: 4})
+	dl.Append(&double_list.DoubleNode{Data: 5})
+
+	dl.Display()
+	dl.Reverse()
+
+	dl.Delete(2)
+
+	dl.Display()
+	dl.Reverse()
+
+	dl.Insert(4, &double_list.DoubleNode{Data: 111})
+
+	dl.Display()
+	dl.Reverse()
+	
+	fmt.Println(dl.Get(3))
+}
 
 ```
 #### stack
@@ -118,6 +152,32 @@ func main() {
 	fmt.Println(s.Length())
 }
 
+
+```
+### queue
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/fishwin/mylib/data_struct/queue"
+)
+
+func main() {
+	q := queue.NewQueue()
+	q.Enqueue(1)
+	q.Enqueue(2)
+	q.Enqueue(3)
+	q.Enqueue(4)
+	q.Enqueue(5)
+
+	fmt.Println(q.Dequeue())
+	fmt.Println(q.Dequeue())
+
+	fmt.Println(q.Peek())
+	fmt.Println(q.Size())
+}
 
 ```
 
