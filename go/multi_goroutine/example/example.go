@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/fishwin/mylib/multi_goroutine"
+	"github.com/fishwin/mylib/go/multi_goroutine"
 )
 
 func operation(goroutineName string, args interface{}) error {
